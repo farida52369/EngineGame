@@ -33,13 +33,16 @@ class Board {
       }
     }
 
+    //l tagrobt l crown
+    //board(0)(1)=null;
+    //board(1)(2)=new CheckersPiece(1,2,true)
+
     // Place red pieces according to correct position on board.
     for (i <- 5 to 7) {
       for ( j <- 0 to (board.length-1)) {
         if(i%2==0 && j%2==1){
           board(i)(j)=new CheckersPiece(i,j,true)
-        }
-        else if (i%2==1 && j%2==0){
+        }else if (i%2==1 && j%2==0){
           board(i)(j)=new CheckersPiece(i,j,true)
         }
       }
@@ -79,7 +82,16 @@ class Board {
     val dest_piece: Piece = board(dest._1)(dest._2)
     val change = if (redPlayerTurn) -1 else 1;
     // Move piece from source to destination
-    board(dest._1)(dest._2) = new CheckersPiece(dest._1, dest._2, src_piece.color)
+
+    src_piece.name match {
+      case "Checker" => board(dest._1)(dest._2) = new CheckersPiece(dest._1, dest._2, src_piece.color)
+      case "CrownChecker" => board(dest._1)(dest._2) = new CrownedPiece(dest._1, dest._2, src_piece.color)
+    }
+
+    if((dest._1==0 && src_piece.hasCrowned==false && redPlayerTurn)||(dest._1==7 && src_piece.hasCrowned==false && !redPlayerTurn)){
+      src_piece.hasCrowned=true;
+      board(dest._1)(dest._2)=new CrownedPiece(dest._1,dest._2,redPlayerTurn)
+    }
     board(dest._1)(dest._2).hasMoved = true
     board(src._1)(src._2) = null
 
@@ -89,6 +101,7 @@ class Board {
     }else if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 + 1),redPlayerTurn)) {
       board(src._1+change)( src._2+ 1)=null
     }
+
     next_turn()
   }
 }

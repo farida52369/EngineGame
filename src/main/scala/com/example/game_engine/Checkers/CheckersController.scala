@@ -79,7 +79,7 @@ class CheckersController(board: Board) {
     breakable {
       for (move <- moves) {
         if (dest == move) {
-          val piece: Piece = board.board(src._1)(src._2)
+          var piece: Piece = board.board(src._1)(src._2)
           board.make_move(src, dest);
           val change = if (board.redPlayerTurn) 1 else -1;
           var field: StackPane = new StackPane()
@@ -109,7 +109,11 @@ class CheckersController(board: Board) {
             field.setBackground(if (((src._1+change + src._2+1) & 1) == 0) Constants.WHITE else Constants.GREY)
             gridPane.add(field, src._2+2,src._1+change+1)
           }
+
+          piece=board.board(dest._1)(dest._2)
           gridPane.add(piece.getPieceSpirit, dest._2 + 1, dest._1 + 1)
+
+
 
           break
         }
