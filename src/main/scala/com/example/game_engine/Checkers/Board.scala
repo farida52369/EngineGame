@@ -75,24 +75,6 @@ class Board {
 
   def make_move(src: (Int, Int), dest: (Int, Int)): Unit = {
 
-   /* val src_piece: Piece = board(src._1)(src._2);
-    val dest_piece: Piece = board(dest._1)(dest._2);
-    val change = if (redPlayerTurn) -1 else 1;
-    // Move piece from source to destination
-    src_piece.hasMoved = true;
-    src_piece.move(dest._1, dest._2);
-    board(dest._1)(dest._2) = src_piece;
-    println(board(dest._1)(dest._2).x+"jjjj"+board(dest._1)(dest._2).y)
-   // board(dest._1)(dest._2).move(dest._1, dest._2);
-    board(src._1)(src._2) = null;
-    if (enemy_at_coordination((src._1+change, src._2 - 1),redPlayerTurn)) {
-      board(src._1+change)( src._2- 1)=null
-    }else if (enemy_at_coordination((src._1+change, src._2 + 1),redPlayerTurn)) {
-      board(src._1+change)( src._2+ 1)=null
-    }
-
-    println("YES")
-    next_turn()*/
     val src_piece: Piece = board(src._1)(src._2)
     val dest_piece: Piece = board(dest._1)(dest._2)
     val change = if (redPlayerTurn) -1 else 1;
