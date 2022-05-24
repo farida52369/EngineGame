@@ -13,8 +13,7 @@ object GameEngine {
   def factory(start: String): Unit = {
     // drawer: Drawer, controller: Controller
 
-    val board: Board = new Board
-    new ChessController(board)
+    new ChessController(new Board)
     // DrawerChess
     // DrawerXO
     // Dr..

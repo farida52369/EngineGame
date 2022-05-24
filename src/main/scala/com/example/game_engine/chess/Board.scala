@@ -16,9 +16,10 @@ class Board {
   def play_turn(): Boolean = whitePlayerTurn
 
   {
+    /*
     for (i <- 0 until 8; j <- 0 until 8) {
       board(i)(j) = null
-    }
+    }*/
     init_game()
   }
 
@@ -52,6 +53,8 @@ class Board {
     for (i <- 0 until 8) {
       board(6)(i) = new Pawn(6, i, true);
     }
+
+    // println("Init: " + board(0)(0).getPieceSpirit)
   }
 
   def valid_move(dest: (Int, Int), color: Boolean): Boolean = {
@@ -245,9 +248,16 @@ class Board {
     val dest_piece: Piece = board(dest._1)(dest._2)
 
     // Move piece from source to destination
-    src_piece.hasMoved = true
-    board(dest._1)(dest._2) = src_piece
-    board(dest._1)(dest._2).move(src._1, src._2)
+    // BAD IMPLEMENTATION
+    src_piece.name match {
+      case "King" => board(dest._1)(dest._2) = new King(dest._1, dest._2, src_piece.color)
+      case "Bishop" => board(dest._1)(dest._2) = new Bishop(dest._1, dest._2, src_piece.color)
+      case "Knight" => board(dest._1)(dest._2) = new Knight(dest._1, dest._2, src_piece.color)
+      case "Pawn" => board(dest._1)(dest._2) = new Pawn(dest._1, dest._2, src_piece.color)
+      case "Queen" => board(dest._1)(dest._2) = new Queen(dest._1, dest._2, src_piece.color)
+      case "Rook" => board(dest._1)(dest._2) = new Rook(dest._1, dest._2, src_piece.color)
+    }
+    board(dest._1)(dest._2).hasMoved = true
     board(src._1)(src._2) = null
 
     // Set king co-ordinations
@@ -256,7 +266,6 @@ class Board {
       else blackKingCell = (dest._1, dest._2)
     }
 
-    println("YES")
     next_turn()
   }
 }

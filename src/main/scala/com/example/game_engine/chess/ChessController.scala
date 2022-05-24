@@ -1,14 +1,17 @@
 package com.example.game_engine.chess
 
+import com.example.game_engine.Constants
 import com.example.game_engine.chess.pieces.Piece
-import javafx.scene.paint.Color
-import javafx.scene.text.Font
 import scalafx.Includes._
 import scalafx.event.ActionEvent
 import scalafx.scene.Scene
 import scalafx.scene.control.{Label, TextField}
-import scalafx.scene.layout.{AnchorPane, GridPane}
+import scalafx.scene.layout._
+import scalafx.scene.paint.Color
+import scalafx.scene.text.Font
 import scalafx.stage.Stage
+
+import scala.util.control.Breaks.{break, breakable}
 
 class ChessController(board: Board) {
 
@@ -20,13 +23,14 @@ class ChessController(board: Board) {
       scene = new Scene(560, 640) {
 
         val pane: AnchorPane = new AnchorPane()
-        var gridPane: GridPane = new ChessDrawer(board.board)
+        val gridPane: GridPane = new ChessDrawer(board.board)
         pane.getChildren.add(gridPane)
+
         val label = new Label("Input (e1h3):")
         label.setFont(new Font(20))
         label.layoutX = 250
         label.layoutY = 595
-        label.setTextFill(Color.RED)
+        label.setTextFill(Color.Red)
         pane.getChildren.add(label)
 
         val textField = new TextField()
@@ -56,7 +60,7 @@ class ChessController(board: Board) {
     val c: Int = input.charAt(2).toUpper - 65
     val d: Int = 7 - (Char.char2int(input.charAt(3)) - 49)
 
-    // println(a + " " + b + " " + c + " " + d)
+    // println("Input: " + a + " " + b + " " + c + " " + d)
 
     if (!board.piece_at_coordination(b, a) || !board.in_bound(d, c) || board.board(b)(a).color != board.play_turn() ||
       (board.piece_at_coordination(d, c) && board.board(b)(a).color == board.board(d)(c).color))
@@ -67,23 +71,28 @@ class ChessController(board: Board) {
   }
 
   def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane): Unit = {
-    /*
+
     val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board)
-    for (move <- moves) {
-      if (dest == move) {
-        val piece: Piece = board.board(src._1)(src._2)
-        gridPane.getChildren.remove(piece.getPieceSpirit, piece.y + 1, piece.x + 1)
 
-        if (board.board(dest._1)(dest._2) != null) {
-          gridPane.getChildren.remove(board.board(dest._1)(dest._2).getPieceSpirit)
+    breakable {
+      for (move <- moves) {
+        if (dest == move) {
+          val piece: Piece = board.board(src._1)(src._2)
+          board.make_move(src, dest)
+
+          var field: StackPane = new StackPane()
+          field.setBackground(if (((src._1 + src._2) & 1) == 0) Constants.WHITE else Constants.GREY)
+          gridPane.add(field, src._2 + 1, src._1 + 1)
+
+          if (board.board(dest._1)(dest._2) != null) {
+            field = new StackPane()
+            field.setBackground(if (((dest._1 + dest._2) & 1) == 0) Constants.WHITE else Constants.GREY)
+            gridPane.add(field, dest._2 + 1, dest._1 + 1)
+          }
+          gridPane.add(piece.getPieceSpirit, dest._2 + 1, dest._1 + 1)
+          break
         }
-        gridPane.add(piece.getPieceSpirit, dest._2 + 1, dest._1 + 1)
-        board.make_move(src, dest)
       }
-    }*/
-
-    val piece: Piece = board.board(src._1)(src._2)
-    println("OPs")
+    }
   }
-
 }

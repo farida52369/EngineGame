@@ -21,9 +21,20 @@ class Pawn(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {
     // -1 -> white player, 1 -> black player
     val change = if (color) -1 else 1
 
+    /*
+    println("YARAB")
+    board.board.foreach(e => {
+      e.foreach(m => {
+        if (m != null)
+          println(m.x + " " + m.y)
+      })
+    })
+    */
+
     // Move forward 1 cell __ Pawn can't attack in a straight line
     if (board.valid_move((x + change, y), color) && !board.piece_at_coordination(x + change, y)) {
       moves = (x + change, y) :: moves
+
 
       // tab what about Move forward 2 cell
       if (board.valid_move((x + 2 * change, y), color) && !hasMoved && !board.piece_at_coordination(x + 2 * change, y))
