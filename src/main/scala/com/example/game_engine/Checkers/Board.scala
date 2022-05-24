@@ -80,7 +80,6 @@ class Board {
 
     val src_piece: Piece = board(src._1)(src._2)
     val dest_piece: Piece = board(dest._1)(dest._2)
-    val change = if (redPlayerTurn) -1 else 1;
     // Move piece from source to destination
 
     src_piece.name match {
@@ -96,10 +95,14 @@ class Board {
     board(src._1)(src._2) = null
 
     ////Remove eaten piece if 2 diagonal places are moved
-    if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 - 1),redPlayerTurn)) {
-      board(src._1+change)( src._2- 1)=null
-    }else if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 + 1),redPlayerTurn)) {
-      board(src._1+change)( src._2+ 1)=null
+    if(src_piece.name=="Checker" && abs(dest._1-src._1)==2) {
+
+         board(abs(dest._1+src._1)/2)(abs(dest._2+src._2)/2)=null
+
+    }else if(src_piece.name=="CrownChecker"&& abs(dest._1-src._1)==2) {
+
+        board(abs(dest._1+src._1)/2)(abs(dest._2+src._2)/2)=null
+
     }
 
     next_turn()

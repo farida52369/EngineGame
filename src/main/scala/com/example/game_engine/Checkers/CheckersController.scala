@@ -81,7 +81,6 @@ class CheckersController(board: Board) {
         if (dest == move) {
           var piece: Piece = board.board(src._1)(src._2)
           board.make_move(src, dest);
-          val change = if (board.redPlayerTurn) 1 else -1;
           var field: StackPane = new StackPane()
           field.setBackground(if (((src._1 + src._2) & 1) == 0) Constants.WHITE else Constants.GREY)
           gridPane.add(field, src._2 + 1, src._1 + 1)
@@ -92,23 +91,19 @@ class CheckersController(board: Board) {
             gridPane.add(field, dest._2 + 1, dest._1 + 1)
           }
 
-
-          //Remove eaten piece if 2 diagonal places moved
-          if (abs(dest._1-src._1)==2&&board.board(src._1+change)(src._2-1)==null) {
+          if(board.board(dest._1)(dest._2).name=="Checker" && abs(dest._1-src._1)==2) {
+            //  board(abs(dest._1-src._1)/2)(abs(dest._2-src._2)/2)=null
             println("ana henaa")
             field = new StackPane()
-            field.setBackground(if (((src._1+change + src._2-1) & 1) == 0) Constants.WHITE else Constants.GREY)
-            gridPane.add(field,src._2, src._1+change+1)
-          }
-
-
-          //Remove eaten piece if 2 diagonal places are moved
-          if (abs(dest._1-src._1)==2&&board.board(src._1+change)(src._2+1)==null) {
+            field.setBackground(if ((((abs(dest._1+src._1)/2) + (abs(dest._2+src._2)/2)) & 1) == 0) Constants.WHITE else Constants.GREY)
+            gridPane.add(field,abs(dest._2+src._2)/2+1, abs(dest._1+src._1)/2+1)
+          }else if(board.board(dest._1)(dest._2).name=="CrownChecker" && abs(dest._1-src._1)==2){
             println("ana mawgooda")
             field = new StackPane()
-            field.setBackground(if (((src._1+change + src._2+1) & 1) == 0) Constants.WHITE else Constants.GREY)
-            gridPane.add(field, src._2+2,src._1+change+1)
+            field.setBackground(if ((((abs(dest._1+src._1)/2) + (abs(dest._2+src._2)/2)) & 1) == 0) Constants.WHITE else Constants.GREY)
+            gridPane.add(field,abs(dest._2+src._2)/2+1, abs(dest._1+src._1)/2+1)
           }
+
 
           piece=board.board(dest._1)(dest._2)
           gridPane.add(piece.getPieceSpirit, dest._2 + 1, dest._1 + 1)
