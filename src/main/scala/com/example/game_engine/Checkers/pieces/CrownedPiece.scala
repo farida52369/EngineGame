@@ -6,7 +6,7 @@ import scalafx.scene.image.{Image, ImageView}
 class CrownedPiece(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {
 
   override def getPieceSpirit: ImageView = {
-    val location = String.format("src/resources/images_Checkers/%s.png",if (color) "img" else "img_1")
+    val location = String.format("src/resources/images_Checkers/%s.png",if (color) "img_14" else "img_13")
     val image: Image = new Image("file:" + location)
 
     val imageView: ImageView = new ImageView(image)
