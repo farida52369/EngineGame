@@ -79,13 +79,14 @@ class Board {
     val dest_piece: Piece = board(dest._1)(dest._2)
     val change = if (redPlayerTurn) -1 else 1;
     // Move piece from source to destination
-    // BAD IMPLEMENTATION
     board(dest._1)(dest._2) = new CheckersPiece(dest._1, dest._2, src_piece.color)
     board(dest._1)(dest._2).hasMoved = true
     board(src._1)(src._2) = null
-    if (enemy_at_coordination((src._1+change, src._2 - 1),redPlayerTurn)) {
+
+    //Remove the eaten piece if exits
+    if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 - 1),redPlayerTurn)) {
       board(src._1+change)( src._2- 1)=null
-    }else if (enemy_at_coordination((src._1+change, src._2 + 1),redPlayerTurn)) {
+    }else if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 + 1),redPlayerTurn)) {
       board(src._1+change)( src._2+ 1)=null
     }
     next_turn()
