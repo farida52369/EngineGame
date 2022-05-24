@@ -23,12 +23,12 @@ class Board {
   private def init_game(): Unit = {
     // Place black pieces according to correct position on board.
     for (i <- 0 to 2) {
-      for ( j <- 0 to (board.length-1)) {
-        if(i%2==0 && j%2==1){
-          board(i)(j)=new CheckersPiece(i,j,false)
+      for (j <- 0 to (board.length - 1)) {
+        if (i % 2 == 0 && j % 2 == 1) {
+          board(i)(j) = new CheckersPiece(i, j, false)
         }
-        else if (i%2==1 && j%2==0){
-          board(i)(j)=new CheckersPiece(i,j,false)
+        else if (i % 2 == 1 && j % 2 == 0) {
+          board(i)(j) = new CheckersPiece(i, j, false)
         }
       }
     }
@@ -39,11 +39,11 @@ class Board {
 
     // Place red pieces according to correct position on board.
     for (i <- 5 to 7) {
-      for ( j <- 0 to (board.length-1)) {
-        if(i%2==0 && j%2==1){
-          board(i)(j)=new CheckersPiece(i,j,true)
-        }else if (i%2==1 && j%2==0){
-          board(i)(j)=new CheckersPiece(i,j,true)
+      for (j <- 0 to (board.length - 1)) {
+        if (i % 2 == 0 && j % 2 == 1) {
+          board(i)(j) = new CheckersPiece(i, j, true)
+        } else if (i % 2 == 1 && j % 2 == 0) {
+          board(i)(j) = new CheckersPiece(i, j, true)
         }
       }
     }
@@ -88,18 +88,18 @@ class Board {
       case "CrownChecker" => board(dest._1)(dest._2) = new CrownedPiece(dest._1, dest._2, src_piece.color)
     }
 
-    if((dest._1==0 && src_piece.hasCrowned==false && redPlayerTurn)||(dest._1==7 && src_piece.hasCrowned==false && !redPlayerTurn)){
-      src_piece.hasCrowned=true;
-      board(dest._1)(dest._2)=new CrownedPiece(dest._1,dest._2,redPlayerTurn)
+    if ((dest._1 == 0 && src_piece.hasCrowned == false && redPlayerTurn) || (dest._1 == 7 && src_piece.hasCrowned == false && !redPlayerTurn)) {
+      src_piece.hasCrowned = true;
+      board(dest._1)(dest._2) = new CrownedPiece(dest._1, dest._2, redPlayerTurn)
     }
     board(dest._1)(dest._2).hasMoved = true
     board(src._1)(src._2) = null
 
     ////Remove eaten piece if 2 diagonal places are moved
-    if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 - 1),redPlayerTurn)) {
-      board(src._1+change)( src._2- 1)=null
-    }else if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 + 1),redPlayerTurn)) {
-      board(src._1+change)( src._2+ 1)=null
+    if (abs(dest._1 - src._1) == 2 && enemy_at_coordination((src._1 + change, src._2 - 1), redPlayerTurn)) {
+      board(src._1 + change)(src._2 - 1) = null
+    } else if (abs(dest._1 - src._1) == 2 && enemy_at_coordination((src._1 + change, src._2 + 1), redPlayerTurn)) {
+      board(src._1 + change)(src._2 + 1) = null
     }
 
     next_turn()

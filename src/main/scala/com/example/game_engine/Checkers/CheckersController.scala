@@ -21,7 +21,7 @@ class CheckersController(board: Board) {
 
   def start_controller(): Unit = {
     val stage = new Stage() {
-      scene = new Scene(560, 640) {
+      scene = new Scene(580, 640) {
 
         val pane: AnchorPane = new AnchorPane()
         val gridPane: GridPane = new CheckersDrawer(board.board)
@@ -72,8 +72,8 @@ class CheckersController(board: Board) {
   }
 
   def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane): Unit = {
-    println(src._1+"src"+src._2)
-    println(dest._1+"dest"+dest._2)
+    println(src._1 + "src" + src._2)
+    println(dest._1 + "dest" + dest._2)
     val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board);
 
     breakable {
@@ -94,25 +94,24 @@ class CheckersController(board: Board) {
 
 
           //Remove eaten piece if 2 diagonal places moved
-          if (abs(dest._1-src._1)==2&&board.board(src._1+change)(src._2-1)==null) {
+          if (abs(dest._1 - src._1) == 2 && board.board(src._1 + change)(src._2 - 1) == null) {
             println("ana henaa")
             field = new StackPane()
-            field.setBackground(if (((src._1+change + src._2-1) & 1) == 0) Constants.WHITE else Constants.GREY)
-            gridPane.add(field,src._2, src._1+change+1)
+            field.setBackground(if (((src._1 + change + src._2 - 1) & 1) == 0) Constants.WHITE else Constants.GREY)
+            gridPane.add(field, src._2, src._1 + change + 1)
           }
 
 
           //Remove eaten piece if 2 diagonal places are moved
-          if (abs(dest._1-src._1)==2&&board.board(src._1+change)(src._2+1)==null) {
+          if (abs(dest._1 - src._1) == 2 && board.board(src._1 + change)(src._2 + 1) == null) {
             println("ana mawgooda")
             field = new StackPane()
-            field.setBackground(if (((src._1+change + src._2+1) & 1) == 0) Constants.WHITE else Constants.GREY)
-            gridPane.add(field, src._2+2,src._1+change+1)
+            field.setBackground(if (((src._1 + change + src._2 + 1) & 1) == 0) Constants.WHITE else Constants.GREY)
+            gridPane.add(field, src._2 + 2, src._1 + change + 1)
           }
 
-          piece=board.board(dest._1)(dest._2)
+          piece = board.board(dest._1)(dest._2)
           gridPane.add(piece.getPieceSpirit, dest._2 + 1, dest._1 + 1)
-
 
 
           break
