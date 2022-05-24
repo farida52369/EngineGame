@@ -21,7 +21,7 @@ class CheckersController(board: Board) {
 
   def start_controller(): Unit = {
     val stage = new Stage() {
-      scene = new Scene(560, 640) {
+      scene = new Scene(580, 640) {
 
         val pane: AnchorPane = new AnchorPane()
         val gridPane: GridPane = new CheckersDrawer(board.board)
