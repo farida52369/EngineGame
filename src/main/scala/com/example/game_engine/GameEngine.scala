@@ -1,6 +1,7 @@
 package com.example.game_engine
 
-import com.example.game_engine.chess.{Board, ChessController, ChessDrawer}
+//import com.example.game_engine.chess.{Board, ChessController, ChessDrawer}
+import com.example.game_engine.Checkers.{Board, CheckersController, CheckersDrawer}
 import scalafx.scene.Scene
 import scalafx.scene.layout.GridPane
 import scalafx.stage.Stage
@@ -13,7 +14,10 @@ object GameEngine {
   def factory(start: String): Unit = {
     // drawer: Drawer, controller: Controller
 
-    new ChessController(new Board)
+    val board: Board = new Board
+    new CheckersController(board)
+
+    //new ChessController(board)
     // DrawerChess
     // DrawerXO
     // Dr..
