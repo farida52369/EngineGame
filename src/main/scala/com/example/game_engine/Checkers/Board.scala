@@ -83,7 +83,7 @@ class Board {
     board(dest._1)(dest._2).hasMoved = true
     board(src._1)(src._2) = null
 
-    //Remove the eaten piece if exits
+    ////Remove eaten piece if 2 diagonal places are moved
     if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 - 1),redPlayerTurn)) {
       board(src._1+change)( src._2- 1)=null
     }else if (abs(dest._1-src._1)==2&&enemy_at_coordination((src._1+change, src._2 + 1),redPlayerTurn)) {

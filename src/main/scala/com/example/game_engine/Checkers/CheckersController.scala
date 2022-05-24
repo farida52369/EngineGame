@@ -93,6 +93,7 @@ class CheckersController(board: Board) {
           }
 
 
+          //Remove eaten piece if 2 diagonal places moved
           if (abs(dest._1-src._1)==2&&board.board(src._1+change)(src._2-1)==null) {
             println("ana henaa")
             field = new StackPane()
@@ -101,7 +102,7 @@ class CheckersController(board: Board) {
           }
 
 
-
+          //Remove eaten piece if 2 diagonal places are moved
           if (abs(dest._1-src._1)==2&&board.board(src._1+change)(src._2+1)==null) {
             println("ana mawgooda")
             field = new StackPane()
