@@ -7,14 +7,14 @@ import scalafx.application.JFXApp3
 import scalafx.event.ActionEvent
 import scalafx.scene.Scene
 import scalafx.scene.control.{Button, ComboBox, Label, TextField}
-import scalafx.scene.layout.GridPane
-import scalafx.stage.Stage
+import scalafx.scene.image.{Image, ImageView}
+
 
 object HelloWorld extends JFXApp3 {
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
       title = "Hello"
-      scene = new Scene(400, 400) {
+      scene = new Scene(600, 600) {
         val button = new Button("Click Me")
         button.layoutX = 200
         button.layoutY = 200
@@ -40,7 +40,12 @@ object HelloWorld extends JFXApp3 {
 
         }
 
-        content = List(button, comboBox, label, textField)
+        val image: ImageView = new ImageView(new Image("file:src/resources/images_chess/icon.png"))
+        image.prefWidth(64)
+        image.prefHeight(64)
+
+        content = List(button, comboBox, label, textField, image)
+
 
         button.onAction = (e: ActionEvent) => {
           GameEngine.factory("stage")
