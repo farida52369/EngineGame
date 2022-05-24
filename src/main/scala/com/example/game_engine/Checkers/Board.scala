@@ -49,6 +49,7 @@ class Board {
     }
   }
 
+
   def valid_move(dest: (Int, Int), color: Boolean): Boolean = {
     if (in_bound(dest) && (!piece_at_coordination(dest) || enemy_at_coordination(dest, color)))
       return true
