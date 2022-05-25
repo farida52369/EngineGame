@@ -41,26 +41,13 @@ class Connect4Drawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
           add(board(i)(j).getPieceSpirit, j + 1, i + 1)
       }
     }
-
-<<<<<<< HEAD
   }
 
-  private def newColLabel(i: Int): Label = {
-    val l: Label = new Label(i + 1 + "")
-    l.setMinSize(75, 20)
-=======
-  // For the Numbers and Letters in The Checker Board
-  private def newRowLabel(i: Int): Label = {
-    val l: Label = new Label("")
-    l.setMinSize(20, 75)
-    l.setAlignment(Pos.Center)
-    l
-  }
+
 
   private def newColLabel(i: Int): Label = {
     val l: Label = new Label(i+1+"")
     l.setMinSize(75, 75)
->>>>>>> 8cb98131f346b9f105ae3d1a0fff86e280d995fa
     l.setAlignment(Pos.Center)
     l
   }
