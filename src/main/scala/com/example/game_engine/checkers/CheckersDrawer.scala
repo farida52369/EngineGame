@@ -1,17 +1,12 @@
 package com.example.game_engine.checkers
 
-import com.example.game_engine.Drawer
 import com.example.game_engine.checkers.pieces.Piece
+import com.example.game_engine.{Constants, Drawer}
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.Label
-import scalafx.scene.layout.{Background, BackgroundFill, GridPane, StackPane}
-import scalafx.scene.paint.Color
+import scalafx.scene.layout.{GridPane, StackPane}
 
 class CheckersDrawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
-
-
-  val GREY = new Background(Array(new BackgroundFill(Color.Gray, null, null)))
-  val WHITE = new Background(Array(new BackgroundFill(Color.White, null, null)))
 
   // Initialization :)
   boardVisualization()
@@ -35,7 +30,7 @@ class CheckersDrawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
     for (i <- 1 to 8) {
       for (j <- 1 to 8) {
         val field: StackPane = new StackPane()
-        field.setBackground(if (((i + j) & 1) == 0) WHITE else GREY)
+        field.setBackground(if (((i + j) & 1) == 0) Constants.WHITE else Constants.GREY)
         add(field, i, j)
       }
     }
@@ -63,6 +58,5 @@ class CheckersDrawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
     l.setAlignment(Pos.Center)
     l
   }
-
 
 }

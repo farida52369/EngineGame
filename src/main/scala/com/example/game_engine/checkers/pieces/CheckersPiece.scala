@@ -11,7 +11,6 @@ class CheckersPiece(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {
 
     val imageView: ImageView = new ImageView(image)
     imageView.setFitWidth(OPTIMAL_SIZE)
-
     imageView.setFitHeight(OPTIMAL_SIZE)
 
     imageView
@@ -37,14 +36,13 @@ class CheckersPiece(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {
     //Eating_Diagonal_Left
     if (board.valid_move((x + 2 * change, y - 2), color) && !board.piece_at_coordination((x + 2 * change, y - 2)) && board.enemy_at_coordination((x + change, y - 1), color)) {
       moves = (x + 2 * change, y - 2) :: moves
-      println("tt")
+      // println("tt")
     }
-
 
     //Eating_Diagonal_Right
     if (board.valid_move((x + 2 * change, y + 2), color) && !board.piece_at_coordination((x + 2 * change, y + 2)) && board.enemy_at_coordination((x + change, y + 1), color)) {
       moves = (x + 2 * change, y + 2) :: moves
-      println("kkk")
+      // println("kkk")
     }
 
     moves

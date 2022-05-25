@@ -3,7 +3,6 @@ package com.example.game_engine.checkers
 import com.example.game_engine.checkers.pieces._
 
 import scala.math.abs
-import scala.util.control.Breaks.{break, breakable}
 
 class Board {
 
@@ -23,27 +22,27 @@ class Board {
   private def init_game(): Unit = {
     // Place black pieces according to correct position on board.
     for (i <- 0 to 2) {
-      for ( j <- 0 to (board.length-1)) {
-        if(i%2==0 && j%2==1){
-          board(i)(j)=new CheckersPiece(i,j,false)
+      for (j <- board.indices) {
+        if (i % 2 == 0 && j % 2 == 1) {
+          board(i)(j) = new CheckersPiece(i, j, false)
         }
-        else if (i%2==1 && j%2==0){
-          board(i)(j)=new CheckersPiece(i,j,false)
+        else if (i % 2 == 1 && j % 2 == 0) {
+          board(i)(j) = new CheckersPiece(i, j, false)
         }
       }
     }
 
-    //l tagrobt l crown
-    //board(0)(1)=null;
-    //board(1)(2)=new CheckersPiece(1,2,true)
+    // l tagrobt l crown
+    // board(0)(1) = null;
+    // board(1)(2) = new CheckersPiece(1,2,true)
 
     // Place red pieces according to correct position on board.
     for (i <- 5 to 7) {
-      for ( j <- 0 to (board.length-1)) {
-        if(i%2==0 && j%2==1){
-          board(i)(j)=new CheckersPiece(i,j,true)
-        }else if (i%2==1 && j%2==0){
-          board(i)(j)=new CheckersPiece(i,j,true)
+      for (j <- board.indices) {
+        if (i % 2 == 0 && j % 2 == 1) {
+          board(i)(j) = new CheckersPiece(i, j, true)
+        } else if (i % 2 == 1 && j % 2 == 0) {
+          board(i)(j) = new CheckersPiece(i, j, true)
         }
       }
     }
@@ -80,7 +79,6 @@ class Board {
   def make_move(src: (Int, Int), dest: (Int, Int)): Unit = {
 
     val src_piece: Piece = board(src._1)(src._2)
-    val dest_piece: Piece = board(dest._1)(dest._2)
 
     // Move piece from source to destination
     src_piece.name match {
@@ -88,24 +86,19 @@ class Board {
       case "CrownChecker" => board(dest._1)(dest._2) = new CrownedPiece(dest._1, dest._2, src_piece.color)
     }
 
-    if((dest._1==0 && src_piece.hasCrowned==false && redPlayerTurn)||(dest._1==7 && src_piece.hasCrowned==false && !redPlayerTurn)){
-      src_piece.hasCrowned=true;
-      board(dest._1)(dest._2)=new CrownedPiece(dest._1,dest._2,redPlayerTurn)
+    if (dest._1 == 0 && !src_piece.hasCrowned && redPlayerTurn ||
+      dest._1 == 7 && !src_piece.hasCrowned && !redPlayerTurn) {
+      src_piece.hasCrowned = true
+      board(dest._1)(dest._2) = new CrownedPiece(dest._1, dest._2, redPlayerTurn)
     }
-    board(dest._1)(dest._2).hasMoved = true
+
     board(src._1)(src._2) = null
-
     ////Remove eaten piece if 2 diagonal places are moved
-    if(src_piece.name=="Checker" && abs(dest._1-src._1)==2) {
-
-         board(abs(dest._1+src._1)/2)(abs(dest._2+src._2)/2)=null
-
-    }else if(src_piece.name=="CrownChecker"&& abs(dest._1-src._1)==2) {
-
-        board(abs(dest._1+src._1)/2)(abs(dest._2+src._2)/2)=null
-
+    if (src_piece.name == "Checker" && abs(dest._1 - src._1) == 2) {
+      board((dest._1 + src._1) / 2)((dest._2 + src._2) / 2) = null
+    } else if (src_piece.name == "CrownChecker" && abs(dest._1 - src._1) == 2) {
+      board((dest._1 + src._1) / 2)((dest._2 + src._2) / 2) = null
     }
-
     next_turn()
   }
 }
