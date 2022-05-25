@@ -26,7 +26,6 @@ libraryDependencies ++= javaFXModules.map(m =>
 libraryDependencies += "org.scalafx" %% "scalafx" % "18.0.1-R27"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-encoding", "utf8", "-feature")
-
 mainClass := Some("com.example.HelloWorld")
 
 // Fork a new JVM for 'run' and 'test:run', to avoid JavaFX double initialization problems
