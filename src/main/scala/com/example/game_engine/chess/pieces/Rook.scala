@@ -5,7 +5,7 @@ import scalafx.scene.image.{Image, ImageView}
 
 import scala.util.control.Breaks.{break, breakable}
 
-class Rook(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {
+class Rook(x: Int, y: Int, color: Boolean, hasMoved: Boolean = false) extends Piece(x, y, color, hasMoved) {
   override def getPieceSpirit: ImageView = {
     val location = String.format("src/resources/images_chess/%s_rook.png", if (color) "white" else "black")
     val image: Image = new Image("file:" + location)

@@ -189,6 +189,16 @@ class Board {
     }
 
     // Move piece from source to destination
+    /*
+    src_piece.name match {
+      case "King" => board(dest._1)(dest._2) = new King(dest._1, dest._2, src_piece.color)
+      case "Bishop" => board(dest._1)(dest._2) = new Bishop(dest._1, dest._2, src_piece.color)
+      case "Knight" => board(dest._1)(dest._2) = new Knight(dest._1, dest._2, src_piece.color)
+      case "Pawn" => board(dest._1)(dest._2) = new Pawn(dest._1, dest._2, src_piece.color)
+      case "Queen" => board(dest._1)(dest._2) = new Queen(dest._1, dest._2, src_piece.color)
+      case "Rook" => board(dest._1)(dest._2) = new Rook(dest._1, dest._2, src_piece.color)
+    }
+    */
     board(dest._1)(dest._2) = src_piece
     board(dest._1)(dest._2).move(src._1, src._2)
     board(src._1)(src._2) = null
@@ -250,14 +260,13 @@ class Board {
     // Move piece from source to destination
     // BAD IMPLEMENTATION
     src_piece.name match {
-      case "King" => board(dest._1)(dest._2) = new King(dest._1, dest._2, src_piece.color)
-      case "Bishop" => board(dest._1)(dest._2) = new Bishop(dest._1, dest._2, src_piece.color)
-      case "Knight" => board(dest._1)(dest._2) = new Knight(dest._1, dest._2, src_piece.color)
-      case "Pawn" => board(dest._1)(dest._2) = new Pawn(dest._1, dest._2, src_piece.color)
-      case "Queen" => board(dest._1)(dest._2) = new Queen(dest._1, dest._2, src_piece.color)
-      case "Rook" => board(dest._1)(dest._2) = new Rook(dest._1, dest._2, src_piece.color)
+      case "King" => board(dest._1)(dest._2) = new King(dest._1, dest._2, src_piece.color, true)
+      case "Bishop" => board(dest._1)(dest._2) = new Bishop(dest._1, dest._2, src_piece.color, true)
+      case "Knight" => board(dest._1)(dest._2) = new Knight(dest._1, dest._2, src_piece.color, true)
+      case "Pawn" => board(dest._1)(dest._2) = new Pawn(dest._1, dest._2, src_piece.color, true)
+      case "Queen" => board(dest._1)(dest._2) = new Queen(dest._1, dest._2, src_piece.color, true)
+      case "Rook" => board(dest._1)(dest._2) = new Rook(dest._1, dest._2, src_piece.color, true)
     }
-    board(dest._1)(dest._2).hasMoved = true
     board(src._1)(src._2) = null
 
     // Set king co-ordinations
@@ -267,5 +276,7 @@ class Board {
     }
 
     next_turn()
+
+    checkMate_staleMate()
   }
 }

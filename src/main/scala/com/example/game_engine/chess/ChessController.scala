@@ -45,6 +45,7 @@ class ChessController(board: Board) {
           if (validInputForCurrentPlayer(textField.getText, gridPane)) {
             println("Happy Input")
           }
+          textField.setText("")
         }
         content = pane
       }
@@ -73,6 +74,11 @@ class ChessController(board: Board) {
   def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane): Unit = {
 
     val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board)
+
+    println("Valid Moves: ")
+    moves.foreach(a => {
+      println(a._1 + " " + a._2)
+    })
 
     breakable {
       for (move <- moves) {
