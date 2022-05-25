@@ -12,7 +12,6 @@ class CheckersPiece(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {
     val imageView: ImageView = new ImageView(image)
     imageView.setFitWidth(OPTIMAL_SIZE)
     imageView.setFitHeight(OPTIMAL_SIZE)
-
     imageView
   }
 
