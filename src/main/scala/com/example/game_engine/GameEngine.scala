@@ -1,7 +1,8 @@
 package com.example.game_engine
 
-//import com.example.game_engine.checkers.{Board, CheckersController}
-import com.example.game_engine.connect4.{Board, Connect4Controller}
+import com.example.game_engine.connect4.Board
+import com.example.game_engine.connect4.Connect4Controller
+
 object GameEngine {
 
   // two functionalities:
@@ -12,7 +13,6 @@ object GameEngine {
 
     val board: Board = new Board
     new Connect4Controller(board)
-    //new CheckersController(board)
 
     //new ChessController(board)
     // DrawerChess
