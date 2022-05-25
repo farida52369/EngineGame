@@ -7,5 +7,6 @@ object Constants {
 
   val GREY = new Background(Array(new BackgroundFill(Color.Gray, null, null)))
   val WHITE = new Background(Array(new BackgroundFill(Color.White, null, null)))
+  val BLUE = new Background(Array(new BackgroundFill(Color.SkyBlue, null, null)))
 
 }
