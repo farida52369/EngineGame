@@ -1,7 +1,7 @@
-package com.example.game_engine.Checkers
+package com.example.game_engine.checkers
 
 import com.example.game_engine.Constants
-import com.example.game_engine.Checkers.pieces.Piece
+import com.example.game_engine.checkers.pieces.Piece
 import scalafx.Includes._
 import scalafx.event.ActionEvent
 import scalafx.scene.Scene

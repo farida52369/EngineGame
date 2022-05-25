@@ -1,7 +1,7 @@
 package com.example.game_engine
 
 //import com.example.game_engine.chess.{Board, ChessController, ChessDrawer}
-import com.example.game_engine.Checkers.{Board, CheckersController, CheckersDrawer}
+import com.example.game_engine.checkers.{Board, CheckersController, CheckersDrawer}
 import scalafx.scene.Scene
 import scalafx.scene.layout.GridPane
 import scalafx.stage.Stage

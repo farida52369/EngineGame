@@ -1,7 +1,7 @@
-package com.example.game_engine.Checkers
+package com.example.game_engine.checkers
 
 import com.example.game_engine.Drawer
-import com.example.game_engine.Checkers.pieces.Piece
+import com.example.game_engine.checkers.pieces.Piece
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.Label
 import scalafx.scene.layout.{Background, BackgroundFill, GridPane, StackPane}

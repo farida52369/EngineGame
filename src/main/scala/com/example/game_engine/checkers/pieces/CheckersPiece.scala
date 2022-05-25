@@ -1,6 +1,6 @@
-package com.example.game_engine.Checkers.pieces
+package com.example.game_engine.checkers.pieces
 
-import com.example.game_engine.Checkers.Board
+import com.example.game_engine.checkers.Board
 import scalafx.scene.image.{Image, ImageView}
 
 class CheckersPiece(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {

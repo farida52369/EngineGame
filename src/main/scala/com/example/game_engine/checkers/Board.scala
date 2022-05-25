@@ -1,6 +1,6 @@
-package com.example.game_engine.Checkers
+package com.example.game_engine.checkers
 
-import com.example.game_engine.Checkers.pieces._
+import com.example.game_engine.checkers.pieces._
 
 import scala.math.abs
 import scala.util.control.Breaks.{break, breakable}
@@ -81,8 +81,8 @@ class Board {
 
     val src_piece: Piece = board(src._1)(src._2)
     val dest_piece: Piece = board(dest._1)(dest._2)
-    // Move piece from source to destination
 
+    // Move piece from source to destination
     src_piece.name match {
       case "Checker" => board(dest._1)(dest._2) = new CheckersPiece(dest._1, dest._2, src_piece.color)
       case "CrownChecker" => board(dest._1)(dest._2) = new CrownedPiece(dest._1, dest._2, src_piece.color)

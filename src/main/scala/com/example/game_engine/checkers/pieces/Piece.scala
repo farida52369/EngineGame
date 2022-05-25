@@ -1,6 +1,6 @@
-package com.example.game_engine.Checkers.pieces
+package com.example.game_engine.checkers.pieces
 
-import com.example.game_engine.Checkers.Board
+import com.example.game_engine.checkers.Board
 import scalafx.scene.image.ImageView
 
 // 0 -> Black, 1 -> White
