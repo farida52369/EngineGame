@@ -19,10 +19,13 @@ object HelloWorld extends JFXApp3 {
         button.layoutX = 200
         button.layoutY = 200
 
+        val button2 = new Button("check")
+        button.layoutX = 100
+        button.layoutY = 100
 
-        val comboBox = new ComboBox(List("Chess", "Connect4", "Checkers", "Tic Tac Toe"));
+       /* val comboBox = new ComboBox(List("Chess", "Connect4", "Checkers", "Tic Tac Toe"));
         comboBox.layoutX = 100
-        comboBox.layoutY = 100
+        comboBox.layoutY = 100*/
 
         val label = new Label()
         label.setText("Input Format: e1h2")
@@ -40,12 +43,14 @@ object HelloWorld extends JFXApp3 {
 
         }
 
-        val image: ImageView = new ImageView(new Image("file:src/resources/images_chess/icon.png"))
+        /*val image: ImageView = new ImageView(new Image("file:src/resources/images_chess/icon.png"))
         image.prefWidth(64)
-        image.prefHeight(64)
+        image.prefHeight(64)*/
 
-        content = List(button, comboBox, label, textField, image)
-
+        content = List(button,button2, /*comboBox,*/ label, textField)
+        button2.onAction = (e: ActionEvent) => {
+          GameEngine.factory("ss")
+        }
 
         button.onAction = (e: ActionEvent) => {
           GameEngine.factory("stage")
@@ -65,9 +70,9 @@ object HelloWorld extends JFXApp3 {
            */
         }
 
-        comboBox.onAction = (e: ActionEvent) => {
+        /*comboBox.onAction = (e: ActionEvent) => {
           println(comboBox.selectionModel.apply().getSelectedItem)
-        }
+        }*/
 
       }
     }
