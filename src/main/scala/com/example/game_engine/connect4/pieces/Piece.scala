@@ -5,7 +5,7 @@ import scalafx.scene.image.ImageView
 
 abstract class Piece(var y: Int, var color: Boolean) {
 
-  def move( yNew: Int): Unit = {
+  def move(yNew: Int): Unit = {
     y = yNew
   }
 
