@@ -4,7 +4,7 @@ import scalafx.scene.image.{Image, ImageView}
 
 class XOPiece(x: Int, y: Int, color: Boolean) {
 
-  val OPTIMAL_SIZE = 85
+  val OPTIMAL_SIZE = 115
 
   def getPieceSpirit: ImageView = {
     val location = String.format("src/resources/images_TicTacToe/%s.png", if (color) "x" else "o")

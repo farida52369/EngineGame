@@ -10,16 +10,16 @@ class XODrawer extends Drawer[Array[Array[XOPiece]]] {
     val gridPane: GridPane = new GridPane()
 
     // Properties for the GridPane
-    gridPane.padding = Insets(25, 25, 25, 25)
-    gridPane.hgap = 0.5
-    gridPane.vgap = 0.5
+    gridPane.padding = Insets(100, 100, 100, 100)
+    gridPane.hgap = 1
+    gridPane.vgap = 1
 
     // For the Background Colors
     for (i <- 0 to 2) {
       for (j <- 0 to 2) {
         val field: StackPane = new StackPane()
-        field.setMinWidth(85)
-        field.setMinHeight(85)
+        field.setMinWidth(115)
+        field.setMinHeight(115)
         field.setBackground(Constants.BLUE)
         gridPane.add(field, i, j)
       }
