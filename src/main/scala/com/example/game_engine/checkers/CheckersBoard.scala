@@ -4,7 +4,7 @@ import com.example.game_engine.checkers.pieces._
 
 import scala.math.abs
 
-class Board {
+class CheckersBoard {
 
   // Initialization :)
   val board: Array[Array[Piece]] = Array.ofDim[Piece](8, 8)
@@ -35,7 +35,6 @@ class Board {
     // l tagrobt l crown
     // board(0)(1) = null;
     // board(1)(2) = new CheckersPiece(1,2,true)
-
     // Place red pieces according to correct position on board.
     for (i <- 5 to 7) {
       for (j <- board.indices) {
@@ -93,7 +92,7 @@ class Board {
     }
 
     board(src._1)(src._2) = null
-    ////Remove eaten piece if 2 diagonal places are moved
+    // Remove eaten piece if 2 diagonal places are moved
     if (src_piece.name == "Checker" && abs(dest._1 - src._1) == 2) {
       board((dest._1 + src._1) / 2)((dest._2 + src._2) / 2) = null
     } else if (src_piece.name == "CrownChecker" && abs(dest._1 - src._1) == 2) {

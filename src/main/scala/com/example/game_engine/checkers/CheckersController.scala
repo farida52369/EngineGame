@@ -2,20 +2,14 @@ package com.example.game_engine.checkers
 
 import com.example.game_engine.Constants
 import com.example.game_engine.checkers.pieces.Piece
-import scalafx.Includes._
-import scalafx.event.ActionEvent
-import scalafx.scene.Scene
-import scalafx.scene.control.{Label, TextField}
 import scalafx.scene.layout._
-import scalafx.scene.paint.Color
-import scalafx.scene.text.Font
-import scalafx.stage.Stage
 
 import scala.math.abs
 import scala.util.control.Breaks.{break, breakable}
 
-class CheckersController(board: Board) {
+class CheckersController(board: CheckersBoard) {
 
+  /*
   // Initialization :)
   start_controller()
 
@@ -53,6 +47,8 @@ class CheckersController(board: Board) {
     stage.show()
   }
 
+   */
+
   def validInputForCurrentPlayer(input: String, gridPane: GridPane): Boolean = {
     if (input.length != 4) return false
 
@@ -72,9 +68,15 @@ class CheckersController(board: Board) {
   }
 
   def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane): Unit = {
+<<<<<<< HEAD
+    println(src._1 + "src" + src._2)
+    println(dest._1 + "dest" + dest._2)
+    val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board);
+=======
     println(src._1+"src"+src._2)
     println(dest._1+"dest"+dest._2)
     val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board)
+>>>>>>> 891922c984ff977ad2b01e556804f6fdfab6f023
 
     breakable {
       for (move <- moves) {
@@ -91,23 +93,34 @@ class CheckersController(board: Board) {
             gridPane.add(field, dest._2 + 1, dest._1 + 1)
           }
 
-          if(board.board(dest._1)(dest._2).name=="Checker" && abs(dest._1-src._1)==2) {
+          if (board.board(dest._1)(dest._2).name == "Checker" && abs(dest._1 - src._1) == 2) {
             //  board(abs(dest._1-src._1)/2)(abs(dest._2-src._2)/2)=null
 
             field = new StackPane()
+<<<<<<< HEAD
+            field.setBackground(if ((((abs(dest._1 + src._1) / 2) + (abs(dest._2 + src._2) / 2)) & 1) == 0) Constants.WHITE else Constants.GREY)
+            gridPane.add(field, abs(dest._2 + src._2) / 2 + 1, abs(dest._1 + src._1) / 2 + 1)
+          } else if (board.board(dest._1)(dest._2).name == "CrownChecker" && abs(dest._1 - src._1) == 2) {
+            println("ana mawgooda")
+=======
             field.setBackground(if ((((abs(dest._1+src._1)/2) + (abs(dest._2+src._2)/2)) & 1) == 0) Constants.WHITE else Constants.GREY)
             gridPane.add(field,abs(dest._2+src._2)/2+1, abs(dest._1+src._1)/2+1)
           }else if(board.board(dest._1)(dest._2).name=="CrownChecker" && abs(dest._1-src._1)==2){
 
+>>>>>>> 891922c984ff977ad2b01e556804f6fdfab6f023
             field = new StackPane()
-            field.setBackground(if ((((abs(dest._1+src._1)/2) + (abs(dest._2+src._2)/2)) & 1) == 0) Constants.WHITE else Constants.GREY)
-            gridPane.add(field,abs(dest._2+src._2)/2+1, abs(dest._1+src._1)/2+1)
+            field.setBackground(if ((((abs(dest._1 + src._1) / 2) + (abs(dest._2 + src._2) / 2)) & 1) == 0) Constants.WHITE else Constants.GREY)
+            gridPane.add(field, abs(dest._2 + src._2) / 2 + 1, abs(dest._1 + src._1) / 2 + 1)
           }
 
 
-          piece=board.board(dest._1)(dest._2)
+          piece = board.board(dest._1)(dest._2)
           gridPane.add(piece.getPieceSpirit, dest._2 + 1, dest._1 + 1)
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 891922c984ff977ad2b01e556804f6fdfab6f023
           break
         }
       }

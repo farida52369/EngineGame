@@ -6,24 +6,22 @@ import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.Label
 import scalafx.scene.layout.{GridPane, StackPane}
 
-class ChessDrawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
+class ChessDrawer extends Drawer[Array[Array[Piece]]] {
 
-  // Initialization :)
-  boardVisualization()
-
-  private def boardVisualization(): Unit = {
+  override def draw(board: Array[Array[Piece]]): GridPane = {
+    val gridPane: GridPane = new GridPane()
 
     // Properties for the GridPane
-    padding = Insets(10, 10, 10, 10)
-    hgap = 0.5
-    vgap = 0.5
+    gridPane.padding = Insets(10, 10, 10, 10)
+    gridPane.hgap = 0.5
+    gridPane.vgap = 0.5
 
     // Numbers and Letters in the Board
     for (i <- 0 until 8) {
-      add(newRowLabel(i), 0, i + 1, 1, 1)
-      add(newRowLabel(i), 9, i + 1, 1, 1)
-      add(newColLabel(i), i + 1, 0, 1, 1)
-      add(newColLabel(i), i + 1, 9, 1, 1)
+      gridPane.add(newRowLabel(i), 0, i + 1, 1, 1)
+      gridPane.add(newRowLabel(i), 9, i + 1, 1, 1)
+      gridPane.add(newColLabel(i), i + 1, 0, 1, 1)
+      gridPane.add(newColLabel(i), i + 1, 9, 1, 1)
     }
 
     // For the Background Colors
@@ -31,7 +29,7 @@ class ChessDrawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
       for (j <- 1 to 8) {
         val field: StackPane = new StackPane()
         field.setBackground(if (((i + j) & 1) == 0) Constants.WHITE else Constants.GREY)
-        add(field, i, j)
+        gridPane.add(field, i, j)
       }
     }
 
@@ -39,11 +37,11 @@ class ChessDrawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
     for (i <- 0 until 8) {
       for (j <- 0 until 8) {
         if (board(i)(j) != null)
-          add(board(i)(j).getPieceSpirit, j + 1, i + 1)
+          gridPane.add(board(i)(j).getPieceSpirit, j + 1, i + 1)
       }
     }
 
-    // println("Drawer: " + board(0)(0).getPieceSpirit)
+    gridPane
   }
 
   // For the Numbers and Letters in The Chess Board

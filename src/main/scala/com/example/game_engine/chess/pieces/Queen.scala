@@ -1,6 +1,6 @@
 package com.example.game_engine.chess.pieces
 
-import com.example.game_engine.chess.Board
+import com.example.game_engine.chess.ChessBoard
 import scalafx.scene.image.{Image, ImageView}
 
 class Queen(x: Int, y: Int, color: Boolean, hasMoved: Boolean = false) extends Piece(x, y, color, hasMoved) {
@@ -15,7 +15,7 @@ class Queen(x: Int, y: Int, color: Boolean, hasMoved: Boolean = false) extends P
     imageView
   }
 
-  override def validMoves(board: Board): List[(Int, Int)] = {
+  override def validMoves(board: ChessBoard): List[(Int, Int)] = {
     var moves: List[(Int, Int)] = List()
     moves = List.concat(new Rook(x, y, color).validMoves(board), new Bishop(x, y, color).validMoves(board))
     moves

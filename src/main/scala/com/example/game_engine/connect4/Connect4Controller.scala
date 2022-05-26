@@ -1,17 +1,10 @@
 package com.example.game_engine.connect4
 
-import com.example.game_engine.connect4.pieces.Connect4Pieces
-import scalafx.Includes._
-import scalafx.event.ActionEvent
-import scalafx.scene.Scene
-import scalafx.scene.control.{Label, TextField}
 import scalafx.scene.layout._
-import scalafx.scene.paint.Color
-import scalafx.scene.text.Font
-import scalafx.stage.Stage
 
-class Connect4Controller(board: Board) {
+class Connect4Controller(board: Connect4Board) {
 
+  /*
   // Initialization :)
   start_controller()
 
@@ -49,6 +42,8 @@ class Connect4Controller(board: Board) {
     stage.show()
   }
 
+   */
+
   def validInputForCurrentPlayer(input: String, gridPane: GridPane): Boolean = {
     if (input.length != 1) return false
 
@@ -63,7 +58,7 @@ class Connect4Controller(board: Board) {
   }
 
   def move(dest: Int, gridPane: GridPane): Unit = {
-    val p = new Connect4Pieces(dest, board.redPlayerTurn)
+    val p = new Connect4Piece(dest, board.redPlayerTurn)
     val moves: Int = p.validMoves(board)
     if (moves != -1) {
       board.make_move(moves, dest)

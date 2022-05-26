@@ -1,6 +1,6 @@
 package com.example.game_engine.chess.pieces
 
-import com.example.game_engine.chess.Board
+import com.example.game_engine.chess.ChessBoard
 import scalafx.scene.image.{Image, ImageView}
 
 import scala.util.control.Breaks.{break, breakable}
@@ -17,7 +17,7 @@ class Rook(x: Int, y: Int, color: Boolean, hasMoved: Boolean = false) extends Pi
     imageView
   }
 
-  override def validMoves(board: Board): List[(Int, Int)] = {
+  override def validMoves(board: ChessBoard): List[(Int, Int)] = {
     var moves: List[(Int, Int)] = List()
 
     // Rook Moves __ In the four dimensions

@@ -1,26 +1,23 @@
 package com.example.game_engine.connect4
 
-import com.example.game_engine.connect4.pieces.Piece
 import com.example.game_engine.{Constants, Drawer}
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.Label
 import scalafx.scene.layout.{GridPane, StackPane}
 
-class Connect4Drawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
+class Connect4Drawer extends Drawer[Array[Array[Connect4Piece]]] {
 
-  // Initialization :)
-  boardVisualization()
-
-  private def boardVisualization(): Unit = {
+  override def draw(board: Array[Array[Connect4Piece]]): GridPane = {
+    val gridPane: GridPane = new GridPane()
 
     // Properties for the GridPane
-    padding = Insets(25, 25, 25, 25)
-    hgap = 0.5
-    vgap = 0.5
+    gridPane.padding = Insets(25, 25, 25, 25)
+    gridPane.hgap = 0.5
+    gridPane.vgap = 0.5
 
     // Numbers and Letters in the Board
     for (i <- 0 until 7) {
-      add(newColLabel(i), i + 1, 7, 1, 1)
+      gridPane.add(newColLabel(i), i + 1, 7, 1, 1)
     }
 
     // For the Background Colors
@@ -30,7 +27,7 @@ class Connect4Drawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
         field.setMinWidth(75)
         field.setMinHeight(75)
         field.setBackground(Constants.BLUE)
-        add(field, i, j)
+        gridPane.add(field, i, j)
       }
     }
 
@@ -38,12 +35,12 @@ class Connect4Drawer(board: Array[Array[Piece]]) extends GridPane with Drawer {
     for (i <- 0 until 6) {
       for (j <- 0 until 7) {
         if (board(i)(j) != null)
-          add(board(i)(j).getPieceSpirit, j + 1, i + 1)
+          gridPane.add(board(i)(j).getPieceSpirit, j + 1, i + 1)
       }
     }
+
+    gridPane
   }
-
-
 
   private def newColLabel(i: Int): Label = {
     val l: Label = new Label(i+1+"")

@@ -1,6 +1,6 @@
 package com.example.game_engine.chess.pieces
 
-import com.example.game_engine.chess.Board
+import com.example.game_engine.chess.ChessBoard
 import scalafx.scene.image.ImageView
 
 // 0 -> Black, 1 -> White
@@ -13,7 +13,7 @@ abstract class Piece(var x: Int, var y: Int, var color: Boolean, var hasMoved: B
 
   def getPieceSpirit: ImageView
 
-  def validMoves(board: Board): List[(Int, Int)]
+  def validMoves(board: ChessBoard): List[(Int, Int)]
 
   def name: String
 

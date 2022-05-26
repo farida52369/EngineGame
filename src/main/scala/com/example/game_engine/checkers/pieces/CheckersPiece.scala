@@ -1,12 +1,12 @@
 package com.example.game_engine.checkers.pieces
 
-import com.example.game_engine.checkers.Board
+import com.example.game_engine.checkers.CheckersBoard
 import scalafx.scene.image.{Image, ImageView}
 
 class CheckersPiece(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {
 
   override def getPieceSpirit: ImageView = {
-    val location = String.format("src/resources/images_Checkers/%s.png", if (color) "img_5" else "img_9")
+    val location = String.format("src/resources/images_checkers/%s.png", if (color) "red" else "black")
     val image: Image = new Image("file:" + location)
 
     val imageView: ImageView = new ImageView(image)
@@ -15,7 +15,7 @@ class CheckersPiece(x: Int, y: Int, color: Boolean) extends Piece(x, y, color) {
     imageView
   }
 
-  override def validMoves(board: Board): List[(Int, Int)] = {
+  override def validMoves(board: CheckersBoard): List[(Int, Int)] = {
 
     var moves: List[(Int, Int)] = List()
     val change = if (color) -1 else 1
