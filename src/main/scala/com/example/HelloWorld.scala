@@ -11,7 +11,10 @@ import scalafx.event.ActionEvent
 import scalafx.scene.Scene
 import scalafx.scene.control.{Button, Label}
 import scalafx.scene.image.{Image, ImageView}
+import scalafx.scene.media.AudioClip
 import scalafx.scene.text.Font
+
+import java.io.File
 
 
 object HelloWorld extends JFXApp3 {
@@ -61,22 +64,29 @@ object HelloWorld extends JFXApp3 {
         button_4.setLayoutY(250)
         button_4.setGraphic(imageView_4)
 
+        val file_start: File = new File("src/resources/audio/start_game.mp3")
+        val start_game: AudioClip = new AudioClip(file_start.toURI.toString)
+
         button_1.onAction = (_: ActionEvent) => {
+          start_game.play()
           val board: ChessBoard = new ChessBoard
           GameEngine.start(new ChessDrawer().draw, new ChessController().control, board.board, board)
         }
 
         button_2.onAction = (_: ActionEvent) => {
+          start_game.play()
           val board: CheckersBoard = new CheckersBoard
           GameEngine.start(new CheckersDrawer().draw, new CheckersController().control, board.board, board)
         }
 
         button_3.onAction = (_: ActionEvent) => {
+          start_game.play()
           val board: Connect4Board = new Connect4Board
           GameEngine.start(new Connect4Drawer().draw, new Connect4Controller().control, board.board, board)
         }
 
         button_4.onAction = (_: ActionEvent) => {
+          start_game.play()
           val board: XOBoard = new XOBoard
           GameEngine.start(new XODrawer().draw, new XOController().control, board.board, board)
         }
