@@ -1,7 +1,7 @@
 package com.example.game_engine
 
-import com.example.game_engine.connect4.Board
-import com.example.game_engine.connect4.Connect4Controller
+import com.example.game_engine.tictactoe.Board
+import com.example.game_engine.tictactoe.TicTacToeController
 
 object GameEngine {
 
@@ -12,7 +12,7 @@ object GameEngine {
     // drawer: Drawer, controller: Controller
 
     val board: Board = new Board
-    new Connect4Controller(board)
+    new TicTacToeController(board)
 
     //new ChessController(board)
     // DrawerChess
