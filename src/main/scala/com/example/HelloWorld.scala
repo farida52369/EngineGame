@@ -1,66 +1,60 @@
 package com.example
 
-import com.example.game_engine.GameEngine
-import com.example.game_engine.chess.{ChessBoard, ChessController, ChessDrawer}
-import javafx.scene.paint.Color
-import scalafx.Includes._
 import scalafx.application.JFXApp3
-import scalafx.event.ActionEvent
 import scalafx.scene.Scene
-import scalafx.scene.control.{Button, ComboBox, Label, TextField}
+import scalafx.scene.control.{Button, Label}
 import scalafx.scene.image.{Image, ImageView}
+import scalafx.scene.text.Font
 
 
 object HelloWorld extends JFXApp3 {
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
-      title = "Hello"
-      scene = new Scene(600, 600) {
-        val button = new Button("Click Me")
-        button.layoutX = 200
-        button.layoutY = 200
+      title = "Game Engine :)"
+      scene = new Scene(600, 420) {
 
-        val button2 = new Button("check")
-        button.layoutX = 100
-        button.layoutY = 100
+        val label = new Label("Game Engine")
+        label.setFont(new Font(40))
+        label.layoutX = 160
+        label.layoutY = 10
 
-       /* val comboBox = new ComboBox(List("Chess", "Connect4", "Checkers", "Tic Tac Toe"));
-        comboBox.layoutX = 100
-        comboBox.layoutY = 100*/
+        val image_1: Image = new Image("file:src/resources/images_games/chess3.png")
+        val imageView_1: ImageView = new ImageView(image_1)
+        imageView_1.setFitWidth(140)
+        imageView_1.setFitHeight(130)
+        val button_1: Button = new Button()
+        button_1.setLayoutX(100)
+        button_1.setLayoutY(90)
+        button_1.setGraphic(imageView_1)
 
-        val label = new Label()
-        label.setText("Input Format: e1h2")
-        label.setTextFill(Color.RED)
-        label.layoutX = 40
-        label.layoutY = 50
+        val image_2: Image = new Image("file:src/resources/images_games/checkers.jpg")
+        val imageView_2: ImageView = new ImageView(image_2)
+        imageView_2.setFitWidth(140)
+        imageView_2.setFitHeight(130)
+        val button_2: Button = new Button()
+        button_2.setLayoutX(320)
+        button_2.setLayoutY(90)
+        button_2.setGraphic(imageView_2)
 
-        val textField = new TextField()
-        textField.layoutX = 300
-        textField.layoutY = 200
-        textField.promptText = "Input"
-        textField.prefWidth = 60
-        textField.onAction = (e: ActionEvent) => {
-          // println(textField.getText)
-        }
+        val image_3: Image = new Image("file:src/resources/images_games/connect4.png")
+        val imageView_3: ImageView = new ImageView(image_3)
+        imageView_3.setFitWidth(140)
+        imageView_3.setFitHeight(130)
+        val button_3: Button = new Button()
+        button_3.setLayoutX(100)
+        button_3.setLayoutY(250)
+        button_3.setGraphic(imageView_3)
 
-        /*val image: ImageView = new ImageView(new Image("file:src/resources/images_chess/icon.png"))
-        image.prefWidth(64)
-        image.prefHeight(64)*/
+        val image_4: Image = new Image("file:src/resources/images_games/tic_tac_toe.png")
+        val imageView_4: ImageView = new ImageView(image_4)
+        imageView_4.setFitWidth(140)
+        imageView_4.setFitHeight(130)
+        val button_4: Button = new Button()
+        button_4.setLayoutX(320)
+        button_4.setLayoutY(250)
+        button_4.setGraphic(imageView_4)
 
-        content = List(button,button2, /*comboBox,*/ label, textField)
-        button2.onAction = (e: ActionEvent) => {
-          GameEngine.factory("ss")
-        }
-
-        button.onAction = (e: ActionEvent) => {
-          val board: ChessBoard = new ChessBoard
-          GameEngine.start(new ChessDrawer().draw, new ChessController().control, board.board, board)
-        }
-
-        /*comboBox.onAction = (e: ActionEvent) => {
-          println(comboBox.selectionModel.apply().getSelectedItem)
-        }*/
-
+        content = List(label, button_1, button_2, button_3, button_4)
       }
     }
   }
