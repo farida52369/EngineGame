@@ -68,15 +68,9 @@ class CheckersController(board: CheckersBoard) {
   }
 
   def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane): Unit = {
-<<<<<<< HEAD
-    println(src._1 + "src" + src._2)
-    println(dest._1 + "dest" + dest._2)
-    val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board);
-=======
     println(src._1+"src"+src._2)
     println(dest._1+"dest"+dest._2)
     val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board)
->>>>>>> 891922c984ff977ad2b01e556804f6fdfab6f023
 
     breakable {
       for (move <- moves) {
@@ -97,17 +91,10 @@ class CheckersController(board: CheckersBoard) {
             //  board(abs(dest._1-src._1)/2)(abs(dest._2-src._2)/2)=null
 
             field = new StackPane()
-<<<<<<< HEAD
-            field.setBackground(if ((((abs(dest._1 + src._1) / 2) + (abs(dest._2 + src._2) / 2)) & 1) == 0) Constants.WHITE else Constants.GREY)
-            gridPane.add(field, abs(dest._2 + src._2) / 2 + 1, abs(dest._1 + src._1) / 2 + 1)
-          } else if (board.board(dest._1)(dest._2).name == "CrownChecker" && abs(dest._1 - src._1) == 2) {
-            println("ana mawgooda")
-=======
             field.setBackground(if ((((abs(dest._1+src._1)/2) + (abs(dest._2+src._2)/2)) & 1) == 0) Constants.WHITE else Constants.GREY)
             gridPane.add(field,abs(dest._2+src._2)/2+1, abs(dest._1+src._1)/2+1)
           }else if(board.board(dest._1)(dest._2).name=="CrownChecker" && abs(dest._1-src._1)==2){
 
->>>>>>> 891922c984ff977ad2b01e556804f6fdfab6f023
             field = new StackPane()
             field.setBackground(if ((((abs(dest._1 + src._1) / 2) + (abs(dest._2 + src._2) / 2)) & 1) == 0) Constants.WHITE else Constants.GREY)
             gridPane.add(field, abs(dest._2 + src._2) / 2 + 1, abs(dest._1 + src._1) / 2 + 1)
@@ -117,10 +104,6 @@ class CheckersController(board: CheckersBoard) {
           piece = board.board(dest._1)(dest._2)
           gridPane.add(piece.getPieceSpirit, dest._2 + 1, dest._1 + 1)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 891922c984ff977ad2b01e556804f6fdfab6f023
           break
         }
       }
