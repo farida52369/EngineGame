@@ -1,6 +1,5 @@
 package com.example.game_engine.tic_tac_toe
 
-import com.example.game_engine.tic_tac_toe
 import scalafx.scene.image.{Image, ImageView}
 
 class XOPiece(x: Int, y: Int, color: Boolean) {
@@ -14,10 +13,11 @@ class XOPiece(x: Int, y: Int, color: Boolean) {
     val imageView: ImageView = new ImageView(image)
     imageView.setFitWidth(OPTIMAL_SIZE)
     imageView.setFitHeight(OPTIMAL_SIZE)
+
     imageView
   }
 
-  def validMoves(board: tic_tac_toe.XOBoard): Int = {
+  def validMoves(board: XOBoard): Int = {
     for (i <- 0 to 2) {
       if (board.board(2 - i)(y) == null) {
         // println(5 - i)
@@ -26,7 +26,5 @@ class XOPiece(x: Int, y: Int, color: Boolean) {
     }
     -1
   }
-
-  def name: String = "tictactoe"
 
 }

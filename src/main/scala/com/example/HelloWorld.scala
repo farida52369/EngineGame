@@ -1,12 +1,14 @@
 package com.example
 
 import com.example.game_engine.GameEngine
+import com.example.game_engine.checkers.{CheckersBoard, CheckersController, CheckersDrawer}
 import com.example.game_engine.chess.{ChessBoard, ChessController, ChessDrawer}
+import com.example.game_engine.connect4.{Connect4Board, Connect4Controller, Connect4Drawer}
 import com.example.game_engine.tic_tac_toe.{XOBoard, XOController, XODrawer}
+import scalafx.Includes._
 import scalafx.application.JFXApp3
 import scalafx.event.ActionEvent
 import scalafx.scene.Scene
-import scalafx.Includes._
 import scalafx.scene.control.{Button, Label}
 import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.text.Font
@@ -16,7 +18,7 @@ object HelloWorld extends JFXApp3 {
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
       title = "Game Engine :)"
-      scene = new Scene(600, 420) {
+      scene = new Scene(600, 440) {
 
         val label = new Label("Game Engine")
         label.setFont(new Font(40))
@@ -63,7 +65,17 @@ object HelloWorld extends JFXApp3 {
           val board: ChessBoard = new ChessBoard
           GameEngine.start(new ChessDrawer().draw, new ChessController().control, board.board, board)
         }
-        
+
+        button_2.onAction = (_: ActionEvent) => {
+          val board: CheckersBoard = new CheckersBoard
+          GameEngine.start(new CheckersDrawer().draw, new CheckersController().control, board.board, board)
+        }
+
+        button_3.onAction = (_: ActionEvent) => {
+          val board: Connect4Board = new Connect4Board
+          GameEngine.start(new Connect4Drawer().draw, new Connect4Controller().control, board.board, board)
+        }
+
         button_4.onAction = (_: ActionEvent) => {
           val board: XOBoard = new XOBoard
           GameEngine.start(new XODrawer().draw, new XOController().control, board.board, board)

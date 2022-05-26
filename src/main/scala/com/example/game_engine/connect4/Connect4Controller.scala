@@ -1,68 +1,30 @@
 package com.example.game_engine.connect4
 
+import com.example.game_engine.Controller
 import scalafx.scene.layout._
 
-class Connect4Controller(board: Connect4Board) {
+class Connect4Controller extends Controller[Connect4Board] {
 
-  /*
-  // Initialization :)
-  start_controller()
-
-  def start_controller(): Unit = {
-    val stage = new Stage() {
-      scene = new Scene(581, 610) {
-
-        val pane: AnchorPane = new AnchorPane()
-        val gridPane: GridPane = new Connect4Drawer(board.board)
-        pane.getChildren.add(gridPane)
-
-        val label = new Label("Input (3):")
-        label.setFont(new Font(20))
-        label.layoutX = 280
-        label.layoutY = 555
-        label.setTextFill(Color.Red)
-        pane.getChildren.add(label)
-
-        val textField = new TextField()
-        textField.setFont(new Font(20))
-        textField.prefWidth = 90
-        textField.prefHeight = 25
-        textField.layoutX = 400
-        textField.layoutY = 550
-        pane.getChildren.add(textField)
-
-        textField.onAction = (_: ActionEvent) => {
-          if (validInputForCurrentPlayer(textField.getText, gridPane)) {
-            println("Happy Input")
-          }
-        }
-        content = pane
-      }
-    }
-    stage.show()
-  }
-
-   */
-
-  def validInputForCurrentPlayer(input: String, gridPane: GridPane): Boolean = {
+  override def control(input: String, gridPane: GridPane, board: Connect4Board): Boolean = {
     if (input.length != 1) return false
 
     val a: Int = Char.char2int(input.charAt(0)) - 49
-
     if (!board.valid_move(a)) {
       return false
     }
+
     // println("Input: " + a + " " + b + " " + c + " " + d)
-    move(a, gridPane)
-    true
+    move(a, gridPane, board)
   }
 
-  def move(dest: Int, gridPane: GridPane): Unit = {
+  def move(dest: Int, gridPane: GridPane, board: Connect4Board): Boolean = {
     val p = new Connect4Piece(dest, board.redPlayerTurn)
     val moves: Int = p.validMoves(board)
     if (moves != -1) {
       board.make_move(moves, dest)
       gridPane.add(board.board(moves)(dest).getPieceSpirit, dest + 1, moves + 1)
+      return true
     }
+    false
   }
 }
