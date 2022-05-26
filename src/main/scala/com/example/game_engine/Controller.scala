@@ -1,5 +1,9 @@
 package com.example.game_engine
 
-trait Controller {
+import scalafx.scene.layout.GridPane
+
+trait Controller[U] {
+
+  def control(input: String, gridPane: GridPane, board: U): Boolean
 
 }

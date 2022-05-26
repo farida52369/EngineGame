@@ -4,7 +4,7 @@ import com.example.game_engine.chess.pieces._
 
 import scala.util.control.Breaks.{break, breakable}
 
-class Board {
+class ChessBoard {
 
   // Initialization :)
   val board: Array[Array[Piece]] = Array.ofDim[Piece](8, 8)
@@ -16,10 +16,9 @@ class Board {
   def play_turn(): Boolean = whitePlayerTurn
 
   {
-    /*
     for (i <- 0 until 8; j <- 0 until 8) {
       board(i)(j) = null
-    }*/
+    }
     init_game()
   }
 

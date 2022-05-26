@@ -1,6 +1,7 @@
 package com.example
 
 import com.example.game_engine.GameEngine
+import com.example.game_engine.chess.{ChessBoard, ChessController, ChessDrawer}
 import javafx.scene.paint.Color
 import scalafx.Includes._
 import scalafx.application.JFXApp3
@@ -40,7 +41,6 @@ object HelloWorld extends JFXApp3 {
         textField.prefWidth = 60
         textField.onAction = (e: ActionEvent) => {
           // println(textField.getText)
-
         }
 
         /*val image: ImageView = new ImageView(new Image("file:src/resources/images_chess/icon.png"))
@@ -53,21 +53,8 @@ object HelloWorld extends JFXApp3 {
         }
 
         button.onAction = (e: ActionEvent) => {
-          GameEngine.factory("stage")
-          /*
-          println("Clicked On: " + comboBox.selectionModel.apply().getSelectedItem)
-          val secondStage = new Stage() {
-            scene = new Scene() {
-
-              val gridPane = new GridPane()
-              gridPane.add(new Label("Children"), 2, 3)
-              content = gridPane
-            }
-          }
-          secondStage.show()
-          stage.hide()
-
-           */
+          val board: ChessBoard = new ChessBoard
+          GameEngine.start(new ChessDrawer().draw, new ChessController().control, board.board, board)
         }
 
         /*comboBox.onAction = (e: ActionEvent) => {
