@@ -91,12 +91,12 @@ class CheckersController(board: CheckersBoard) {
 
           if (board.board(dest._1)(dest._2).name == "Checker" && abs(dest._1 - src._1) == 2) {
             field = new StackPane()
-            field.setBackground(if ((((abs(dest._1 + src._1) / 2) + (abs(dest._2 + src._2) / 2)) & 1) == 0) Constants.WHITE else Constants.GREY)
+            field.setBackground(if ((((abs(dest._1 + src._1) / 2) + ((dest._2 + src._2) / 2)) & 1) == 0) Constants.WHITE else Constants.GREY)
             gridPane.add(field, abs(dest._2 + src._2) / 2 + 1, abs(dest._1 + src._1) / 2 + 1)
           } else if (board.board(dest._1)(dest._2).name == "CrownChecker" && abs(dest._1 - src._1) == 2) {
             field = new StackPane()
-            field.setBackground(if ((((abs(dest._1 + src._1) / 2) + (abs(dest._2 + src._2) / 2)) & 1) == 0) Constants.WHITE else Constants.GREY)
-            gridPane.add(field, abs(dest._2 + src._2) / 2 + 1, abs(dest._1 + src._1) / 2 + 1)
+            field.setBackground(if (((((dest._1 + src._1) / 2) + ((dest._2 + src._2) / 2)) & 1) == 0) Constants.WHITE else Constants.GREY)
+            gridPane.add(field, (dest._2 + src._2) / 2 + 1, (dest._1 + src._1) / 2 + 1)
           }
 
           piece = board.board(dest._1)(dest._2)

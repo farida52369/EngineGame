@@ -1,7 +1,12 @@
 package com.example
 
+import com.example.game_engine.GameEngine
+import com.example.game_engine.chess.{ChessBoard, ChessController, ChessDrawer}
+import com.example.game_engine.tic_tac_toe.{XOBoard, XOController, XODrawer}
 import scalafx.application.JFXApp3
+import scalafx.event.ActionEvent
 import scalafx.scene.Scene
+import scalafx.Includes._
 import scalafx.scene.control.{Button, Label}
 import scalafx.scene.image.{Image, ImageView}
 import scalafx.scene.text.Font
@@ -53,6 +58,16 @@ object HelloWorld extends JFXApp3 {
         button_4.setLayoutX(320)
         button_4.setLayoutY(250)
         button_4.setGraphic(imageView_4)
+
+        button_1.onAction = (_: ActionEvent) => {
+          val board: ChessBoard = new ChessBoard
+          GameEngine.start(new ChessDrawer().draw, new ChessController().control, board.board, board)
+        }
+        
+        button_4.onAction = (_: ActionEvent) => {
+          val board: XOBoard = new XOBoard
+          GameEngine.start(new XODrawer().draw, new XOController().control, board.board, board)
+        }
 
         content = List(label, button_1, button_2, button_3, button_4)
       }
