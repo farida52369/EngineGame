@@ -13,6 +13,10 @@ class ChessBoard {
   var whiteKingCell: (Int, Int) = (7, 4)
   var gameOver: (String, Any) = _ // (howEnded, TheWinnerIfExist)
 
+  def setTurn(Turn: Boolean):Unit={
+    whitePlayerTurn = Turn;
+  }
+
   def play_turn(): Boolean = whitePlayerTurn
 
   {

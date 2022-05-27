@@ -5,7 +5,7 @@ import scalafx.scene.layout._
 
 class Connect4Controller extends Controller[Connect4Board] {
 
-  override def control(input: String, gridPane: GridPane, board: Connect4Board): Boolean = {
+  override def control(input: String, gridPane: GridPane, board: Connect4Board,turn: Boolean): Boolean = {
     if (input.length != 1) return false
 
     val a: Int = Char.char2int(input.charAt(0)) - 49
@@ -14,10 +14,11 @@ class Connect4Controller extends Controller[Connect4Board] {
     }
 
     // println("Input: " + a + " " + b + " " + c + " " + d)
-    move(a, gridPane, board)
+    move(a, gridPane, board,turn)
   }
 
-  def move(dest: Int, gridPane: GridPane, board: Connect4Board): Boolean = {
+  def move(dest: Int, gridPane: GridPane, board: Connect4Board,turn: Boolean): Boolean = {
+    board.setTurn(turn)
     val p = new Connect4Piece(dest, board.redPlayerTurn)
     val moves: Int = p.validMoves(board)
     if (moves != -1) {

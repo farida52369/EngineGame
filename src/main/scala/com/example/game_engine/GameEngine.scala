@@ -18,26 +18,38 @@ object GameEngine {
 
   /**
    *
-   * @param draw higher order function to draw the board
-   * @param control higher order function to (valid input _ make the move if valid input)
+   * @param draw     higher order function to draw the board
+   * @param control  higher order function to (valid input _ make the move if valid input)
    * @param array_2d the board itself which represent the pieces
-   * @param board the board that has the 2D array and the rules
+   * @param board    the board that has the 2D array and the rules
    * @tparam T array_2D
    * @tparam M board
    */
-  def start[T, M](draw: (T) => GridPane, control: (String, GridPane, M) => Boolean, array_2d: T, board: M): Unit = {
+
+  var turn: Boolean = true
+
+
+  def start[T, M](name: String,draw: (T) => GridPane, control: (String, GridPane, M,Boolean) => Boolean, array_2d: T, board: M): Unit = {
     val gridPane: GridPane = draw(array_2d)
-    view_board(control, gridPane, board)
+    view_board(name,control, gridPane, board,turn)
   }
 
-  private def view_board[M](control: (String, GridPane, M) => Boolean, gridPane: GridPane, board: M): Unit = {
+  private def view_board[M](name: String,control: (String, GridPane, M,Boolean) => Boolean, gridPane: GridPane, board: M, turn: Boolean ): Unit = {
     val stage = new Stage() {
+
       scene = new Scene(580, 640) {
 
         val pane: AnchorPane = new AnchorPane()
         pane.getChildren.add(gridPane)
+        var label=new Label("Input (a1):")
+        if(name=="XO"){
+          label = new Label("Input :")
+        }else if(name.equals("Connect4")){
+          label = new Label("Input Col. No.:")
+        }else{
+          label = new Label("Input (e1h3):")
+        }
 
-        val label = new Label("Input (e1h3):")
         label.setFont(new Font(20))
         label.layoutX = 250
         label.layoutY = 595
@@ -53,18 +65,23 @@ object GameEngine {
         pane.getChildren.add(textField)
 
         textField.onAction = (_: ActionEvent) => {
-          if (!control(textField.getText, gridPane, board)) {
-            new Alert(AlertType.Information) {
+          if (!control(textField.getText, gridPane, board,GameEngine.turn)) {
+            new Alert(AlertType.Information){
               title = "Ooops, Warning!"
               headerText = "Input Provided Error"
               contentText = "Please, provide a valid input"
             }.showAndWait()
+          }else{
+            GameEngine.turn= !GameEngine.turn;
           }
           textField.setText("")
         }
+
         content = pane
       }
+
     }
+
     stage.show()
   }
 }

@@ -8,7 +8,7 @@ import scala.math.abs
 
 class CheckersController extends Controller[CheckersBoard] {
 
-  override def control(input: String, gridPane: GridPane, board: CheckersBoard): Boolean = {
+  override def control(input: String, gridPane: GridPane, board: CheckersBoard,turn: Boolean): Boolean = {
     if (input.length != 4) return false
 
     val a: Int = input.charAt(0).toUpper - 65
@@ -22,14 +22,15 @@ class CheckersController extends Controller[CheckersBoard] {
       (board.piece_at_coordination(d, c) && board.board(b)(a).color == board.board(d)(c).color))
       return false
 
-    move((b, a), (d, c), gridPane, board)
+    move((b, a), (d, c), gridPane, board,turn)
   }
 
 
-  def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane, board: CheckersBoard): Boolean = {
+  def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane, board: CheckersBoard,turn: Boolean): Boolean = {
 
     // println(src._1 + "src" + src._2)
     // println(dest._1 + "dest" + dest._2)
+    board.setTurn(turn)
     val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board)
 
     for (move <- moves) {

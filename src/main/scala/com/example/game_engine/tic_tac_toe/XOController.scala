@@ -5,19 +5,21 @@ import scalafx.scene.layout._
 
 class XOController extends Controller[XOBoard] {
 
-  override def control(input: String, gridPane: GridPane, board: XOBoard): Boolean = {
-    if (input.length != 1) return false
+  override def control(input: String, gridPane: GridPane, board: XOBoard,turn: Boolean): Boolean = {
+    if (input.length != 2) return false
 
-    val a: Int = Char.char2int(input.charAt(0)) - 49
-
-    if (!board.valid_move(a / 3, a % 3)) {
+    val a: Int = input.charAt(0).toUpper - 65
+    val b: Int = 2-(Char.char2int(input.charAt(1)) - 49)
+    println(b+"hhhh"+a)
+    if (!board.valid_move(b, a)) {
       return false
     }
 
-    move((a / 3, a % 3), gridPane, board)
+    move((b, a), gridPane, board,turn)
   }
 
-  def move(dest: (Int, Int), gridPane: GridPane, board: XOBoard): Boolean = {
+  def move(dest: (Int, Int), gridPane: GridPane, board: XOBoard,turn: Boolean): Boolean = {
+    board.setTurn(turn);
     val p = new XOPiece(dest._1, dest._2, board.xTurn)
     val moves: Int = p.validMoves(board)
     if (moves != -1) {

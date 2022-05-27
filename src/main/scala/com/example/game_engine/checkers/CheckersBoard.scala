@@ -10,6 +10,11 @@ class CheckersBoard {
   val board: Array[Array[Piece]] = Array.ofDim[Piece](8, 8)
   var redPlayerTurn: Boolean = true
 
+  def setTurn(Turn: Boolean):Unit={
+    redPlayerTurn = Turn;
+  }
+
+
   def play_turn(): Boolean = redPlayerTurn
 
   {

@@ -6,7 +6,7 @@ import scalafx.scene.layout._
 
 class ChessController extends Controller[ChessBoard] {
 
-  override def control(input: String, gridPane: GridPane, board: ChessBoard): Boolean = {
+  override def control(input: String, gridPane: GridPane, board: ChessBoard,turn: Boolean): Boolean = {
     if (input.length != 4) return false
 
     val a: Int = input.charAt(0).toUpper - 65
@@ -20,11 +20,11 @@ class ChessController extends Controller[ChessBoard] {
       (board.piece_at_coordination(d, c) && board.board(b)(a).color == board.board(d)(c).color))
       return false
 
-    move((b, a), (d, c), gridPane, board)
+    move((b, a), (d, c), gridPane, board,turn)
   }
 
-  def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane, board: ChessBoard): Boolean = {
-
+  def move(src: (Int, Int), dest: (Int, Int), gridPane: GridPane, board: ChessBoard,turn: Boolean): Boolean = {
+    board.setTurn(turn)
     val moves: List[(Int, Int)] = board.board(src._1)(src._2).validMoves(board)
     /*
     println("Valid Moves: ")
