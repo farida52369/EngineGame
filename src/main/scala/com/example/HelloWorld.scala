@@ -70,25 +70,25 @@ object HelloWorld extends JFXApp3 {
         button_1.onAction = (_: ActionEvent) => {
           start_game.play()
           val board: ChessBoard = new ChessBoard
-          GameEngine.start(new ChessDrawer().draw, new ChessController().control, board.board, board)
+          GameEngine.start("Chess", new ChessDrawer().draw, new ChessController().control, board.board, board)
         }
 
         button_2.onAction = (_: ActionEvent) => {
           start_game.play()
           val board: CheckersBoard = new CheckersBoard
-          GameEngine.start(new CheckersDrawer().draw, new CheckersController().control, board.board, board)
+          GameEngine.start("Checker", new CheckersDrawer().draw, new CheckersController().control, board.board, board)
         }
 
         button_3.onAction = (_: ActionEvent) => {
           start_game.play()
           val board: Connect4Board = new Connect4Board
-          GameEngine.start(new Connect4Drawer().draw, new Connect4Controller().control, board.board, board)
+          GameEngine.start("Connect4", new Connect4Drawer().draw, new Connect4Controller().control, board.board, board)
         }
 
         button_4.onAction = (_: ActionEvent) => {
           start_game.play()
           val board: XOBoard = new XOBoard
-          GameEngine.start(new XODrawer().draw, new XOController().control, board.board, board)
+          GameEngine.start("XO", new XODrawer().draw, new XOController().control, board.board, board)
         }
 
         content = List(label, button_1, button_2, button_3, button_4)

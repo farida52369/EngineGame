@@ -13,6 +13,10 @@ class ChessBoard {
   var whiteKingCell: (Int, Int) = (7, 4)
   var gameOver: (String, Any) = _ // (howEnded, TheWinnerIfExist)
 
+  def setTurn(Turn: Boolean): Unit = {
+    whitePlayerTurn = Turn
+  }
+
   def play_turn(): Boolean = whitePlayerTurn
 
   {
@@ -254,7 +258,7 @@ class ChessBoard {
   def make_move(src: (Int, Int), dest: (Int, Int)): Unit = {
 
     val src_piece: Piece = board(src._1)(src._2)
-    val dest_piece: Piece = board(dest._1)(dest._2)
+    // val dest_piece: Piece = board(dest._1)(dest._2)
 
     // Move piece from source to destination
     // BAD IMPLEMENTATION
@@ -275,7 +279,6 @@ class ChessBoard {
     }
 
     next_turn()
-
-    checkMate_staleMate()
+    // checkMate_staleMate()
   }
 }

@@ -6,6 +6,10 @@ class XOBoard {
   val board: Array[Array[XOPiece]] = Array.ofDim[XOPiece](3, 3)
   var xTurn: Boolean = true
 
+  def setTurn(Turn: Boolean):Unit={
+    xTurn = Turn
+  }
+
   def play_turn(): Boolean = xTurn
 
   {
@@ -28,12 +32,7 @@ class XOBoard {
     board(dest._1)(dest._2) != null
   }
 
-  def next_turn(): Unit = {
-    xTurn = !xTurn
-  }
-
   def make_move(x: Int, y: Int): Unit = {
-    board(x)(y) = new XOPiece(x, y, xTurn)
-    next_turn()
+    board(x)(y) = new XOPiece(xTurn)
   }
 }

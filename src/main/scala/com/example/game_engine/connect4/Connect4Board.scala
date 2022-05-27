@@ -6,6 +6,10 @@ class Connect4Board {
   val board: Array[Array[Connect4Piece]] = Array.ofDim[Connect4Piece](6, 7)
   var redPlayerTurn: Boolean = true
 
+  def setTurn(Turn: Boolean): Unit = {
+    redPlayerTurn = Turn
+  }
+
   def play_turn(): Boolean = redPlayerTurn
 
   {
@@ -20,13 +24,8 @@ class Connect4Board {
     false
   }
 
-  def next_turn(): Unit = {
-    redPlayerTurn = !redPlayerTurn
-  }
-
   def make_move(x: Int, y: Int): Unit = {
     board(x)(y) = new Connect4Piece(y, redPlayerTurn)
     // Move piece from source to destination
-    next_turn()
   }
 }
