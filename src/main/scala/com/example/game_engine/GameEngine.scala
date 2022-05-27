@@ -15,7 +15,6 @@ object GameEngine {
   // two functionalities:
   // 1) Drawer
   // 2) Controller
-
   /**
    *
    * @param draw higher order function to draw the board
@@ -25,7 +24,7 @@ object GameEngine {
    * @tparam T array_2D
    * @tparam M board
    */
-  def start[T, M](draw: (T) => GridPane, control: (String, GridPane, M) => Boolean, array_2d: T, board: M): Unit = {
+  def start[T, M](draw: T => GridPane, control: (String, GridPane, M) => Boolean, array_2d: T, board: M): Unit = {
     val gridPane: GridPane = draw(array_2d)
     view_board(control, gridPane, board)
   }
