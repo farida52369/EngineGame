@@ -15,12 +15,7 @@ class XODrawer extends Drawer[Array[Array[XOPiece]]] {
     gridPane.hgap = 1
     gridPane.vgap = 1
 
-    for (i <- 0 until 3) {
-      //gridPane.add(newRowLabel(i), 0, i + 1, 1, 1)
-      gridPane.add(newRowLabel(i), 4, i , 1, 1)
-     // gridPane.add(newColLabel(i), i + 1, 0, 1, 1)
-      gridPane.add(newColLabel(i), i , 4, 1, 1)
-    }
+
     // For the Background Colors
     for (i <- 0 to 2) {
       for (j <- 0 to 2) {
@@ -41,18 +36,6 @@ class XODrawer extends Drawer[Array[Array[XOPiece]]] {
     }
     gridPane
   }
-  // For the Numbers and Letters in The Chess Board
-  private def newRowLabel(i: Int): Label = {
-    val l: Label = new Label(3 - i + "")
-    l.setMinSize(20, 64)
-    l.setAlignment(Pos.Center)
-    l
-  }
 
-  private def newColLabel(i: Int): Label = {
-    val l = new Label((i + 65).toChar + "")
-    l.setMinSize(64, 20)
-    l.setAlignment(Pos.Center)
-    l
-  }
+
 }
