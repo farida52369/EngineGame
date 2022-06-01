@@ -33,7 +33,7 @@ class Rook(x: Int, y: Int, color: Boolean, hasMoved: Boolean = false) extends Pi
               moves = (xNew, yNew) :: moves
             else break
           }
-          if (board.piece_at_coordination(xNew, yNew)) break
+
         }
       }
     }
